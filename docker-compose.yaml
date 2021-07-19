@@ -1,0 +1,11 @@
+version: "3.9"
+services: 
+    # docker build --tag static-web-app:v1 .
+    # docker run -d -e DB_URL=http://localhost:3306 --name c1 -p 7070:80 static-web-app:v1
+    c1:
+        #image: static-web-app:v1
+        build: .
+        ports: 
+            - 7070:80
+        environment: 
+            - DB_URL=http://localhost:3306

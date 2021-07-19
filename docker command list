@@ -1,0 +1,15 @@
+To see live logs of container
+docker logs -f <containre name/id>
+
+To mount the host path in container
+docker run -d -v host_path:container_path <image name>
+
+docker run -d --name c2 -v "$(pwd)/data:/containerData" -p 4040:80 static-web-app:v1
+as metion above , docker need absolute host
+
+to provide docker variable at run time
+docker run -d -e DB_NAME=value <image_name>
+docker run -d -e DB_URL=http://localhost:3306 --name c1 -p 7070:80 static-web-app:v1
+
+to see all attached variable with container, go inside container and run "printenv" command
+
