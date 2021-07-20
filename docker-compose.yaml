@@ -2,10 +2,32 @@ version: "3.9"
 services: 
     # docker build --tag static-web-app:v1 .
     # docker run -d -e DB_URL=http://localhost:3306 --name c1 -p 7070:80 static-web-app:v1
-    c1:
+    frontend:
         #image: static-web-app:v1
         build: .
-        ports: 
-            - 7070:80
+        #ports: 
+        #    - 7070:80
+        #environment: 
+        #    - DB_URL=http://localhost:3306
+
+    api:
+    #  docker run  -d -p 8080:8080 -e  ADMIN_PASSWORD=pass123 abdennour/dummy-rest-api-example
+        image: abdennour/dummy-rest-api-example
+        #ports: 
+        #    - 9090:8080
         environment: 
-            - DB_URL=http://localhost:3306
+            ADMIN_PASSWORD: pass123
+
+    #api-ambassador:
+    #    image: nginx:1.21-alpine
+    #    ports: 
+    #        - 9091:80
+    #    volumes: 
+    #        - ./.cloudnative/nginx-conf-skip-cors:/etc/nginx/conf.d:ro
+
+    router:
+        image: nginx:1.21-alpine
+        ports: 
+            - 8000:80
+        volumes: 
+            - ./.cloudnative/nginx-conf-router:/etc/nginx/conf.d:ro

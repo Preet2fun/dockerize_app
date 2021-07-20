@@ -13,3 +13,11 @@ docker run -d -e DB_URL=http://localhost:3306 --name c1 -p 7070:80 static-web-ap
 
 to see all attached variable with container, go inside container and run "printenv" command
 
+to run docker-compose with updated yaml file or updated source code use --build argument 
+docker-compose up -d --build 
+
+and to remove any orphans container use blow command
+docker-compose up -d --build --remove-orphans
+
+
+
