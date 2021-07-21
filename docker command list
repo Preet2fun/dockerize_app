@@ -28,6 +28,9 @@ skopeo can work with OCI images as well as the original Docker v2 images.
 https://github.com/containers/skopeo
 https://www.redhat.com/en/blog/skopeo-10-released
 
+To enable docker build kit export below variable
+export DOCKER_BUILDKIT=1 
+
 
 
 
