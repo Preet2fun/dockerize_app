@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  app:
+    build: .
+    ports:
+      - 8100:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${DB_NAME}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASS}
+      GF: dd
+  db:
+    image: mysql:8.0.25
+    environment:
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_ROOT_PASSWORD: root
+    volumes: # this is for mounting the volumes
+      - data-db:/var/lib/mysql
+    # volumes:
+    #   - "./conf.d:/etc/mysql/conf.d:ro"
+volumes:  # this is creation of data volume which is going to use in above mount process
+  data-db:
+
+# if you have .env file in same folder as docker-compose file then docker compose automatically populate/consider 
+# that env variables as well. 
